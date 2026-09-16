@@ -24,10 +24,41 @@ Clicking **Train Agent** runs 1,000 episodes of the random policy, calculates th
 
 ## Tech stack
 
-**Backend:** Python, FastAPI, Uvicorn
-**Frontend:** React, Vite, lucide-react
+**Desktop app (recommended):** Python + tkinter (standard library only, dark/night-mode UI)
+**RL engine (shared):** plain Python — `backend/environment.py`, `agent.py`, `episode.py`, `returns.py`, `value_function.py`
+**Website (optional):** FastAPI + Uvicorn backend, React + Vite + lucide-react frontend
 
 ## Running it locally
+
+### Desktop app (recommended — no browser, no server, no install)
+
+The desktop app reuses the same GridWorld + Monte Carlo engine as the website, in a native dark-mode window.
+
+Requirements: standard Python 3 with tkinter (ships with Python on Windows/macOS — verified with Python 3.14 + tkinter 9.0). No `pip install` needed.
+
+**Option 1 — double-click (Windows)**
+```
+Double-click  Run RL Lab.bat
+```
+
+**Option 2 — terminal**
+```bash
+python desktop/app.py
+```
+
+### Using the desktop app
+
+| Action | How |
+|---|---|
+| Move agent | Click arrow buttons, or press arrow keys / WASD |
+| Reset episode | Click **Reset (R)** or press `R` |
+| Train | Click **Train Agent** — runs 1,000 random-policy episodes in the background, then shows estimated `V(s)` numbers on the grid. Repeat to accumulate more episodes into the running average |
+
+Grid legend: `A` = agent, `G` = goal (+10), `×` = obstacle (−5), empty step = −1. Numbers on cells are the learned `V(s)` values. Training never freezes the window (runs on a background thread).
+
+### Website (optional)
+
+The original web version still works if you prefer the browser.
 
 **Backend**
 ```bash
@@ -47,6 +78,22 @@ cp .env.example .env
 npm run dev
 ```
 Frontend runs at `http://localhost:5173`.
+
+## Project structure
+
+```text
+RL LAB/
+├── desktop/app.py        # desktop UI (tkinter, dark mode) — imports the engine from backend/
+├── Run RL Lab.bat        # Windows double-click launcher for the desktop app
+├── backend/              # RL engine + optional FastAPI server
+│   ├── environment.py    # GridWorld (states, actions, rewards)
+│   ├── agent.py          # random policy
+│   ├── episode.py        # episode generation
+│   ├── returns.py        # discounted returns
+│   ├── value_function.py # Monte Carlo value estimates
+│   └── main.py           # FastAPI server (website only)
+└── frontend/             # React website (optional)
+```
 
 ## What's next
 
