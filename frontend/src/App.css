@@ -1,0 +1,408 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: #0b0d10;
+  color: #f5f7fa;
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 32px 48px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 48px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.header p {
+  margin: 6px 0 0;
+  color: #8c929b;
+  font-size: 14px;
+}
+
+.lecture-badge {
+  border: 1px solid #292e35;
+  padding: 9px 14px;
+  border-radius: 999px;
+  color: #9da4ae;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  gap: 28px;
+}
+
+.grid-section,
+.panel-card,
+.concept-card {
+  background: #12151a;
+  border: 1px solid #22272f;
+  border-radius: 18px;
+}
+
+.grid-section {
+  padding: 28px;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.section-title h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.section-title p {
+  margin: 6px 0 0;
+  color: #777f89;
+  font-size: 14px;
+}
+
+.reset-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border: 1px solid #2a3038;
+  border-radius: 10px;
+  background: #181c22;
+  color: #dce0e5;
+  cursor: pointer;
+}
+
+.reset-button:hover:not(:disabled) {
+  background: #22272f;
+}
+
+.reset-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.grid {
+  width: min(520px, 100%);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 10px;
+  background: #1a1e24;
+  border: 1px solid #282e36;
+  color: #626a75;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.cell.agent {
+  background: #dce8ff;
+  color: #111827;
+  box-shadow: 0 0 25px rgba(220, 232, 255, 0.15);
+}
+
+.cell.goal {
+  background: #dcebdc;
+  color: #172617;
+}
+
+.cell.obstacle {
+  background: #252a31;
+  color: #69717c;
+}
+
+.agent-icon {
+  font-weight: 900;
+}
+
+.cell-value {
+  position: absolute;
+  bottom: 7px;
+  right: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #9da8b6;
+}
+
+.controls {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.controls > div {
+  display: flex;
+  gap: 6px;
+}
+
+.controls button {
+  width: 48px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #2a3038;
+  border-radius: 9px;
+  background: #181c22;
+  color: #e6e9ed;
+  cursor: pointer;
+}
+
+.controls button:hover:not(:disabled) {
+  background: #22272f;
+}
+
+.controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.keyboard-hint {
+  margin: 18px 0 0;
+  text-align: center;
+  color: #555d67;
+  font-size: 12px;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.panel-card {
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-card span {
+  color: #7f8791;
+  font-size: 13px;
+}
+
+.panel-card strong {
+  font-size: 18px;
+}
+
+.positive {
+  color: #b9ddb9;
+}
+
+.negative {
+  color: #e0a9a9;
+}
+
+.concept-card {
+  padding: 20px;
+  margin-top: 4px;
+}
+
+.concept-card > span {
+  color: #7f8791;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+
+.rl-flow {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 12px;
+  color: #c6cbd2;
+}
+
+.rl-flow .arrow {
+  margin: 5px 0;
+  color: #626a75;
+}
+
+.train-status {
+  margin: 4px 0 0;
+  color: #8c929b;
+  font-size: 13px;
+  text-align: center;
+}
+
+.train-button,
+.run-button {
+  height: 48px;
+  border: 0;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.train-button {
+  margin-top: 4px;
+  background: #f0f2f5;
+  color: #101216;
+}
+
+.train-button:hover:not(:disabled) {
+  background: #dfe3e8;
+}
+
+.run-button {
+  background: #20252c;
+  border: 1px solid #303640;
+  color: #f0f2f5;
+}
+
+.run-button:hover:not(:disabled) {
+  background: #292f38;
+}
+
+.train-button:disabled,
+.run-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 850px) {
+  .app {
+    padding: 24px;
+  }
+
+  .main {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .lecture-badge {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .app {
+    padding: 16px;
+  }
+
+  .grid-section {
+    padding: 18px;
+  }
+
+  .section-title h1 {
+    font-size: 22px;
+  }
+
+  .reset-button {
+    padding: 8px 10px;
+  }
+}
+
+.run-button {
+  margin-top: 4px;
+  height: 48px;
+  border: 1px solid #2a3038;
+  border-radius: 11px;
+  background: #181c22;
+  color: #e6e9ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.run-button:hover:not(:disabled) {
+  background: #22272f;
+}
+
+.run-button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.reset-button:disabled,
+.controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.value-explainer {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 4px 0 12px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: #555;
+  margin-top: 12px;
+}
+
+.legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.legend-swatch.agent { background: #4f46e5; }
+.legend-swatch.goal { background: #16a34a; }
+.legend-swatch.obstacle { background: #71717a; }
+.legend-swatch.value { background: #fbbf24; }
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
